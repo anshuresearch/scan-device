@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Analysis</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #050505;
+      color: #00ff88;
+      font-family: Consolas, monospace;
+      overflow: hidden;
+      height: 100vh;
+      padding: 40px;
+    }
+
+    .terminal {
+      max-width: 1000px;
+      margin: auto;
+      border: 1px solid rgba(0,255,136,0.2);
+      background: rgba(0,0,0,0.8);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 60px rgba(0,255,136,0.08);
+    }
+
+    .title {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      color: #ffffff;
+    }
+
+    .line {
+      margin: 10px 0;
+      opacity: 0;
+      animation: fadeIn 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .progress-box {
+      width: 100%;
+      height: 22px;
+      background: #111;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 25px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ff88, #00bfff);
+      transition: width 0.3s ease;
+    }
+
+    .final-message {
+      display: none;
+      text-align: center;
+      margin-top: 40px;
+      animation: pop 0.6s ease;
+    }
+
+    .final-message h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .final-message p {
+      color: #c7c7c7;
+      font-size: 1.1rem;
+    }
+
+    .emoji {
+      font-size: 5rem;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .glitch {
+      color: #ff4d4d;
+      animation: glitch 0.15s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(1px, -1px); }
+      25% { transform: translate(-1px, 1px); }
+      50% { transform: translate(2px, 0px); }
+      75% { transform: translate(-2px, -1px); }
+      100% { transform: translate(1px, 1px); }
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: #666;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="terminal">
+
+    <div class="title">
+      Initializing Neural Device Scan...
+    </div>
+
+    <div id="output"></div>
+
+    <div class="progress-box">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="final-message" id="finalMessage">
+      <div class="emoji">💀</div>
+      <h1 class="glitch">SYSTEM COMPROMISED</h1>
+      <p>
+        Just kidding. Your device is safe.<br><br>
+        But your trust issues? Those are permanent.
+      </p>
+    </div>
+
+    <div class="footer">
+      Totally real government-grade AI scanner definitely not made for memes.
+    </div>
+
+  </div>
+
+  <script>
+
+    const lines = [
+      'Connecting to encrypted satellite network...',
+      'Bypassing firewall...',
+      'Reading browser metadata...',
+      'Analyzing meme consumption patterns...',
+      'Locating hidden snack inventory...',
+      'Scanning cringe levels...',
+      'Accessing secret playlist...',
+      'Downloading embarrassing screenshots...',
+      'AI confidence level: 99.7%',
+      'Preparing final report...'
+    ];
+
+    const output = document.getElementById('output');
+    const progress = document.getElementById('progress');
+    const finalMessage = document.getElementById('finalMessage');
+
+    let i = 0;
+
+    function addLine() {
+      if (i < lines.length) {
+
+        const div = document.createElement('div');
+        div.className = 'line';
+        div.innerText = '> ' + lines[i];
+
+        output.appendChild(div);
+
+        progress.style.width = ((i + 1) / lines.length) * 100 + '%';
+
+        i++;
+
+        setTimeout(addLine, 900);
+
+      } else {
+
+        setTimeout(() => {
+          finalMessage.style.display = 'block';
+        }, 1000);
+
+      }
+    }
+
+    addLine();
+
+  </script>
+
+</body>
+</html>
